@@ -50,11 +50,9 @@ function App() {
         <div className="container">
           <Alert alert={alert} />
           <Routes>
-            <Route path="/" exact component={TextForm}>
-              {/* <TextForm heading="Enter the text to Analyze Below" mode={themeMode} initAlert={initAlert} /> */}
+            <Route path="/" element={<TextForm heading="Enter the text to Analyze Below" mode={themeMode} initAlert={initAlert} />}>
             </Route>
-            <Route path="/about" exact component={About}>
-              {/* <About /> */}
+            <Route path="/about" element={<About mode={themeMode}/>}>
             </Route>
           </Routes>
         </div>
