@@ -48,11 +48,11 @@ export default function TextForm(props) {
                 <button type="button" onClick={handleCopyClick} className="me-3 btn btn-success">Copy to Clipboard</button>
                 <button type="button" onClick={handleClearClick} className="ms-auto btn btn-danger">Clear</button>
             </div>
-            <div className={`justify-content-between mt-3 align-items-center d-${text.length == '0' ? 'none' : 'flex'}`}>
+            <div className={`justify-content-between mt-3 align-items-center d-${text.length === 0 ? 'none' : 'flex'}`}>
                 <p className={`text-${props.mode === 'dark' ? 'light' : 'dark'}`}>{text.split(" ").length} Words, {text.length} Characters</p>
                 <span className="badge rounded-pill bg-secondary">{0.008 * (text.split(" ").length)} Minutes to read</span>
             </div>
-            <div className={`d-${text.length == '0' ? 'none' : 'block'}`}>
+            <div className={`d-${text.length === 0 ? 'none' : 'block'}`}>
                 <h4 className={`text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Preview</h4>
                 <code className={`rounded d-block p-3 bg-${props.mode === 'dark' ? 'light' : 'dark'}`}>
                     {text}
