@@ -13,22 +13,37 @@ import {
 
 
 function App() {
-  const [themeMode, setThemeMode] = useState('light');
+
+  let localStorageTheme = localStorage.getItem('themeMode');
+  let localValue = (localStorageTheme ? localStorageTheme : 'light');
+
+  const [themeMode, setThemeMode] = useState(localValue);
+
+  if (themeMode === 'light') {
+    document.body.classList.remove("bg-dark", "bg-opacity-75");
+  }
+  else {
+    document.body.classList.add("bg-dark", "bg-opacity-75");
+  }
+
   const toggleMode = () => {
     // setInterval(() => {
     //   document.title = 'Text Utils';
     // }, 2000);
+
     if (themeMode === 'light') {
       setThemeMode('dark');
       document.body.classList.add("bg-dark", "bg-opacity-75");
       initAlert('Dark mode has been Enabled', 'light');
       document.title = 'Text Utils - Dark Mode';
+      localStorage.setItem('themeMode', 'dark');
     }
     else {
       setThemeMode('light');
       document.body.classList.remove("bg-dark", "bg-opacity-75");
       initAlert('Light mode has been Enabled', 'dark')
       document.title = 'Text Utils - Light Mode'
+      localStorage.setItem('themeMode', 'light');
     }
   }
   const [alert, setAlert] = useState(null);

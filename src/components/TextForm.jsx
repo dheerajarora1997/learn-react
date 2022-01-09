@@ -72,10 +72,10 @@ export default function TextForm(props) {
                     <button type="button" onClick={handleExtraSpace} className="mb-2 btn btn-secondary">Remove Extra Space</button>
                 </div>
                 <div className="col-6 col-sm-2 text-sm-center">
-                    <button type="button" onClick={handleCopyClick} className="mb-2 btn btn-success">Copy to Clipboard</button>
+                    <button type="button" onClick={handleCopyClick} className="mb-2 btn btn-success">Copy Text to Clipboard</button>
                 </div>
                 <div className="col-6 col-sm-2 text-sm-center">
-                    <button type="button" onClick={handleClearClick} className="ms-auto btn btn-danger">Clear</button>
+                    <button type="button" onClick={handleClearClick} className="ms-auto btn btn-danger">Clear Text</button>
                 </div>
             </div>
             <div className={`justify-content-between mt-3 align-items-center d-${text.length === 0 ? 'none' : 'flex'}`}>
