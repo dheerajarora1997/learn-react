@@ -41,6 +41,7 @@ export default function TextForm(props) {
         let copyText = document.getElementById("myBox");
         copyText.select();
         navigator.clipboard.writeText(copyText.value);
+        document.getSelection().removeAllRanges();
         initAlert('Copied to Clipboard', 'success')
     }
     const handleClearClick = () => {
@@ -62,22 +63,22 @@ export default function TextForm(props) {
                 </div>
                 <div className="row">
                     <div className="col-6 col-sm-2 text-sm-center">
-                        <button type="button" onClick={handleUpperClick} className="mb-2 btn btn-primary">Convert to Uppercase</button>
+                        <button type="button" onClick={handleUpperClick} className="mb-2 btn btn-primary" disabled={text.length === 0}>Convert to Uppercase</button>
                     </div>
                     <div className="col-6 col-sm-2 text-sm-center">
-                        <button type="button" onClick={handleLowerClick} className="mb-2 btn btn-warning">Convert to Lowercase</button>
+                        <button type="button" onClick={handleLowerClick} className="mb-2 btn btn-warning" disabled={text.length === 0}>Convert to Lowercase</button>
                     </div>
                     <div className="col-6 col-sm-2 text-sm-center">
-                        <button type="button" onClick={handleCapitalizeClick} className="mb-2 btn btn-info">Convert to Capitalize</button>
+                        <button type="button" onClick={handleCapitalizeClick} className="mb-2 btn btn-info" disabled={text.length === 0}>Convert to Capitalize</button>
                     </div>
                     <div className="col-6 col-sm-2 text-sm-center">
-                        <button type="button" onClick={handleExtraSpace} className="mb-2 btn btn-secondary">Remove Extra Space</button>
+                        <button type="button" onClick={handleExtraSpace} className="mb-2 btn btn-secondary" disabled={text.length === 0}>Remove Extra Space</button>
                     </div>
                     <div className="col-6 col-sm-2 text-sm-center">
-                        <button type="button" onClick={handleCopyClick} className="mb-2 btn btn-success">Copy Text to Clipboard</button>
+                        <button type="button" onClick={handleCopyClick} className="mb-2 btn btn-success" disabled={text.length === 0}>Copy Text to Clipboard</button>
                     </div>
                     <div className="col-6 col-sm-2 text-sm-center">
-                        <button type="button" onClick={handleClearClick} className="ms-auto btn btn-danger">Clear Text</button>
+                        <button type="button" onClick={handleClearClick} className="ms-auto btn btn-danger" disabled={text.length === 0}>Clear Text</button>
                     </div>
                 </div>
                 <div className={`justify-content-between mt-3 align-items-center d-${text.length === 0 ? 'none' : 'flex'}`}>
