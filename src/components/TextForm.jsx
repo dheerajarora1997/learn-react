@@ -38,9 +38,7 @@ export default function TextForm(props) {
         initAlert('Extra space removed', 'secondary')
     }
     const handleCopyClick = () => {
-        let copyText = document.getElementById("myBox");
-        copyText.select();
-        navigator.clipboard.writeText(copyText.value);
+        navigator.clipboard.writeText(text);
         document.getSelection().removeAllRanges();
         initAlert('Copied to Clipboard', 'success')
     }
@@ -82,7 +80,7 @@ export default function TextForm(props) {
                     </div>
                 </div>
                 <div className={`justify-content-between mt-3 align-items-center d-${text.length === 0 ? 'none' : 'flex'}`}>
-                    <p className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>{text.split(" ").filter((element) => { return element.length !== 0 }).length} Words, {text.length} Characters</p>
+                    <p className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>{text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} Words, {text.length} Characters</p>
                     <span className="badge rounded-pill bg-secondary">{0.008 * (text.split(" ").filter((element) => { return element.length !== 0 }).length)} Minutes to read</span>
                 </div>
                 <div className={`d-${(text.length) === 0 ? 'none' : 'block'}`}>
