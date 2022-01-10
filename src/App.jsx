@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import TextForm from './components/TextForm';
 import About from './components/About';
 import Alert from './components/Alert';
+import NoPage from './components/NoPage';
 import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
@@ -60,15 +61,15 @@ function App() {
   return (
     <Router>
       <Navbar title="TextUtils" mode={themeMode} toggleMode={toggleMode} />
-      <div className="container">
-        <Alert alert={alert} />
-        <Routes>
-          <Route exact path="/" element={<TextForm heading="Enter the text to Analyze Below" mode={themeMode} />}>
-          </Route>
-          <Route exact path="/about" element={<About mode={themeMode} />}>
-          </Route>
-        </Routes>
-      </div>
+      <Alert alert={alert} />
+      <Routes>
+        <Route exact path="/" element={<TextForm heading="Enter the text to Analyze Below" mode={themeMode} />}>
+        </Route>
+        <Route exact path="/about" element={<About mode={themeMode} />}>
+        </Route>
+        <Route exact path="*" element={<NoPage mode={themeMode} />}>
+        </Route>
+      </Routes>
     </Router>
   );
 }

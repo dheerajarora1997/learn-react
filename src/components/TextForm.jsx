@@ -54,39 +54,42 @@ export default function TextForm(props) {
     return (
         <>
             <Alert alert={alert} />
-            <div className="my-3">
-                <h4 className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>{heading}</h4>
-                <textarea className="form-control" id="myBox" rows="10" value={text} onChange={handleOnChange}></textarea>
-            </div>
-            <div className="row">
-                <div className="col-6 col-sm-2 text-sm-center">
-                    <button type="button" onClick={handleUpperClick} className="mb-2 btn btn-primary">Convert to Uppercase</button>
+            <div className="container">
+
+                <div className="my-3">
+                    <h4 className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>{heading}</h4>
+                    <textarea className="form-control" id="myBox" rows="10" value={text} onChange={handleOnChange}></textarea>
                 </div>
-                <div className="col-6 col-sm-2 text-sm-center">
-                    <button type="button" onClick={handleLowerClick} className="mb-2 btn btn-warning">Convert to Lowercase</button>
+                <div className="row">
+                    <div className="col-6 col-sm-2 text-sm-center">
+                        <button type="button" onClick={handleUpperClick} className="mb-2 btn btn-primary">Convert to Uppercase</button>
+                    </div>
+                    <div className="col-6 col-sm-2 text-sm-center">
+                        <button type="button" onClick={handleLowerClick} className="mb-2 btn btn-warning">Convert to Lowercase</button>
+                    </div>
+                    <div className="col-6 col-sm-2 text-sm-center">
+                        <button type="button" onClick={handleCapitalizeClick} className="mb-2 btn btn-info">Convert to Capitalize</button>
+                    </div>
+                    <div className="col-6 col-sm-2 text-sm-center">
+                        <button type="button" onClick={handleExtraSpace} className="mb-2 btn btn-secondary">Remove Extra Space</button>
+                    </div>
+                    <div className="col-6 col-sm-2 text-sm-center">
+                        <button type="button" onClick={handleCopyClick} className="mb-2 btn btn-success">Copy Text to Clipboard</button>
+                    </div>
+                    <div className="col-6 col-sm-2 text-sm-center">
+                        <button type="button" onClick={handleClearClick} className="ms-auto btn btn-danger">Clear Text</button>
+                    </div>
                 </div>
-                <div className="col-6 col-sm-2 text-sm-center">
-                    <button type="button" onClick={handleCapitalizeClick} className="mb-2 btn btn-info">Convert to Capitalize</button>
+                <div className={`justify-content-between mt-3 align-items-center d-${text.length === 0 ? 'none' : 'flex'}`}>
+                    <p className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>{text.split(" ").filter((element) => { return element.length !== 0 }).length} Words, {text.length} Characters</p>
+                    <span className="badge rounded-pill bg-secondary">{0.008 * (text.split(" ").filter((element) => { return element.length !== 0 }).length)} Minutes to read</span>
                 </div>
-                <div className="col-6 col-sm-2 text-sm-center">
-                    <button type="button" onClick={handleExtraSpace} className="mb-2 btn btn-secondary">Remove Extra Space</button>
+                <div className={`d-${(text.length) === 0 ? 'none' : 'block'}`}>
+                    <h4 className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>Preview</h4>
+                    <code className={`rounded d-block p-3 bg-${mode === 'dark' ? 'light' : 'dark'}`}>
+                        {text}
+                    </code>
                 </div>
-                <div className="col-6 col-sm-2 text-sm-center">
-                    <button type="button" onClick={handleCopyClick} className="mb-2 btn btn-success">Copy Text to Clipboard</button>
-                </div>
-                <div className="col-6 col-sm-2 text-sm-center">
-                    <button type="button" onClick={handleClearClick} className="ms-auto btn btn-danger">Clear Text</button>
-                </div>
-            </div>
-            <div className={`justify-content-between mt-3 align-items-center d-${text.length === 0 ? 'none' : 'flex'}`}>
-                <p className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>{text.split(" ").length} Words, {text.length} Characters</p>
-                <span className="badge rounded-pill bg-secondary">{0.008 * (text.split(" ").length)} Minutes to read</span>
-            </div>
-            <div className={`d-${text.length === 0 ? 'none' : 'block'}`}>
-                <h4 className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>Preview</h4>
-                <code className={`rounded d-block p-3 bg-${mode === 'dark' ? 'light' : 'dark'}`}>
-                    {text}
-                </code>
             </div>
         </>
     )
