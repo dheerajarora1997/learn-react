@@ -30,7 +30,7 @@ export default function TextForm(props) {
         initAlert('Converted to Lowercase', 'warning')
     }
     const handleCapitalizeClick = () => {
-        alert('Capitalization is still pending');
+        window.alert('Capitalization is still pending');
     }
     const handleExtraSpace = () => {
         let newText = text.split(/[ ]+/);
@@ -56,7 +56,7 @@ export default function TextForm(props) {
             <div className="container">
 
                 <div className="my-3">
-                    <h4 className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>{heading}</h4>
+                    <h4 className={`text-${mode === 'dark' || mode === 'secondary' ? 'light' : 'dark'}`}>{heading}</h4>
                     <textarea className="form-control" id="myBox" rows="10" value={text} onChange={handleOnChange}></textarea>
                 </div>
                 <div className="row">
@@ -80,11 +80,11 @@ export default function TextForm(props) {
                     </div>
                 </div>
                 <div className={`justify-content-between mt-3 align-items-center d-${text.length === 0 ? 'none' : 'flex'}`}>
-                    <p className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>{text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} Words, {text.length} Characters</p>
+                    <p className={`text-${mode === 'dark' || mode === 'secondary' ? 'light' : 'dark'}`}>{text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} Words, {text.length} Characters</p>
                     <span className="badge rounded-pill bg-secondary">{0.008 * (text.split(" ").filter((element) => { return element.length !== 0 }).length)} Minutes to read</span>
                 </div>
                 <div className={`d-${(text.length) === 0 ? 'none' : 'block'}`}>
-                    <h4 className={`text-${mode === 'dark' ? 'light' : 'dark'}`}>Preview</h4>
+                    <h4 className={`text-${mode === 'dark' || mode === 'secondary' ? 'light' : 'dark'}`}>Preview</h4>
                     <code className={`rounded d-block p-3 bg-${mode === 'dark' ? 'light' : 'dark'}`}>
                         {text}
                     </code>
