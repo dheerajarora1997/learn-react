@@ -12,6 +12,17 @@ import {
 } from "react-router-dom";
 
 
+const modeContrast = {
+  primary: 'dark',
+  warning: 'dark',
+  success: 'dark',
+  danger: 'dark',
+  info: 'dark',
+  light: 'dark',
+  dark: 'light',
+  secondary: 'light',
+}
+
 function App() {
 
   let localStorageTheme = localStorage.getItem('themeMode');
@@ -60,11 +71,11 @@ function App() {
     <Router>
       <Navbar title="TextUtils" mode={themeMode} toggleMode={toggleMode} />
       <Routes>
-        <Route exact path="/" element={<TextForm heading="Enter the text to Analyze Below" mode={themeMode} />}>
+        <Route exact path="/" element={<TextForm heading="Enter the text to Analyze Below" mode={themeMode} modeContrast={modeContrast} />}>
         </Route>
-        <Route exact path="/about" element={<About mode={themeMode} />}>
+        <Route exact path="/about" element={<About mode={themeMode} modeContrast={modeContrast} />}>
         </Route>
-        <Route exact path="*" element={<NoPage mode={themeMode} />}>
+        <Route exact path="*" element={<NoPage mode={themeMode} modeContrast={modeContrast} />}>
         </Route>
       </Routes>
     </Router>

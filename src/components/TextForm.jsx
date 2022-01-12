@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import Alert from './Alert';
 
-
 export default function TextForm(props) {
 
-    const { mode, heading } = props;
+    const { mode, heading, modeContrast } = props;
 
     const [text, setText] = useState('');
 
@@ -56,7 +55,7 @@ export default function TextForm(props) {
             <div className="container">
 
                 <div className="my-3">
-                    <h4 className={`text-${mode === 'dark' || mode === 'secondary' ? 'light' : 'dark'}`}>{heading}</h4>
+                    <h4 className={`text-${modeContrast[mode]}`}>{heading}</h4>
                     <textarea className="form-control" id="myBox" rows="10" value={text} onChange={handleOnChange}></textarea>
                 </div>
                 <div className="row">
