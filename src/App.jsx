@@ -85,9 +85,5 @@ function App() {
 export default App;
 
 Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
-}
-
-Navbar.defaultProps = {
-  title: 'Company Name'
+  title: PropTypes.string,
 }
