@@ -29,7 +29,10 @@ export default function TextForm(props) {
         initAlert('Converted to Lowercase', 'warning')
     }
     const handleCapitalizeClick = () => {
-        window.alert('Capitalization is still pending');
+        let capitalizeText = text.toLowerCase().replace(/\b./g, function (a) { return a.toUpperCase(); });
+        setText(capitalizeText);
+        initAlert('Converted to capitalize', 'warning')
+
     }
     const handleExtraSpace = () => {
         let newText = text.split(/[ ]+/);
