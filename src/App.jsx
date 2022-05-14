@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Navbar from './components/Navbar'
 import TextForm from './components/TextForm';
 import About from './components/About';
-import Alert from './components/Alert';
 import NoPage from './components/NoPage';
 import React, { useState } from 'react';
 import {
@@ -13,6 +12,17 @@ import {
 } from "react-router-dom";
 
 
+const modeContrast = {
+  primary: 'dark',
+  warning: 'dark',
+  success: 'dark',
+  danger: 'dark',
+  info: 'dark',
+  light: 'dark',
+  dark: 'light',
+  secondary: 'light',
+}
+
 function App() {
 
   let localStorageTheme = localStorage.getItem('themeMode');
@@ -20,32 +30,31 @@ function App() {
 
   const [themeMode, setThemeMode] = useState(localValue);
 
+  const modeOpacity = {
+    primary: '25',
+    warning: '25',
+    success: '25',
+    danger: '25',
+    info: '25',
+    light: '10',
+    dark: '75',
+    secondary: '75',
+  }
+
   if (themeMode === 'light') {
-    document.body.classList.remove("bg-dark", "bg-opacity-75");
+    localStorage.setItem('themeMode', 'light');
   }
   else {
-    document.body.classList.add("bg-dark", "bg-opacity-75");
+    localStorage.setItem('themeMode', themeMode);
+    window.document.body.className = '';
+    window.document.body.classList.add(`bg-opacity-${modeOpacity[themeMode]}`, "bg-" + themeMode);
   }
 
-  const toggleMode = () => {
-    // setInterval(() => {
-    //   document.title = 'Text Utils';
-    // }, 2000);
 
-    if (themeMode === 'light') {
-      setThemeMode('dark');
-      document.body.classList.add("bg-dark", "bg-opacity-75");
-      initAlert('Dark mode has been Enabled', 'light');
-      document.title = 'Text Utils - Dark Mode';
-      localStorage.setItem('themeMode', 'dark');
-    }
-    else {
-      setThemeMode('light');
-      document.body.classList.remove("bg-dark", "bg-opacity-75");
-      initAlert('Light mode has been Enabled', 'dark')
-      document.title = 'Text Utils - Light Mode'
-      localStorage.setItem('themeMode', 'light');
-    }
+  const toggleMode = (cls) => {
+    setThemeMode(cls);
+    window.document.body.className = '';
+    window.document.body.classList.add(`bg-opacity-${modeOpacity[cls]}`, "bg-" + cls);
   }
   const [alert, setAlert] = useState(null);
   const initAlert = (message, type) => {
@@ -61,13 +70,12 @@ function App() {
   return (
     <Router>
       <Navbar title="TextUtils" mode={themeMode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
       <Routes>
-        <Route exact path="/" element={<TextForm heading="Enter the text to Analyze Below" mode={themeMode} />}>
+        <Route exact path="/" element={<TextForm heading="Enter the text to Analyze Below" mode={themeMode} modeContrast={modeContrast} />}>
         </Route>
-        <Route exact path="/about" element={<About mode={themeMode} />}>
+        <Route exact path="/about" element={<About mode={themeMode} modeContrast={modeContrast} />}>
         </Route>
-        <Route exact path="*" element={<NoPage mode={themeMode} />}>
+        <Route exact path="*" element={<NoPage mode={themeMode} modeContrast={modeContrast} />}>
         </Route>
       </Routes>
     </Router>
@@ -77,9 +85,5 @@ function App() {
 export default App;
 
 Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
-}
-
-Navbar.defaultProps = {
-  title: 'Company Name'
+  title: PropTypes.string,
 }
