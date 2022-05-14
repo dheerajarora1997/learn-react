@@ -31,7 +31,7 @@ export default function TextForm(props) {
     const handleCapitalizeClick = () => {
         let capitalizeText = text.toLowerCase().replace(/\b./g, function (a) { return a.toUpperCase(); });
         setText(capitalizeText);
-        initAlert('Converted to capitalize', 'warning')
+        initAlert('Converted to capitalize', 'info')
 
     }
     const handleExtraSpace = () => {
